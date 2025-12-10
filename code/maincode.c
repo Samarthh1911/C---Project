@@ -1,9 +1,16 @@
 #include <stdio.h>
 #include <string.h>
-#include "header.h"
+
+struct Student {
+    int sapId, rollNumber;
+    char studentName[50];
+    float sgpa[8];
+    float cgpa;
+};
 
 struct Student list[100];
 int total = 0;
+
 
 void add()
 {
@@ -45,6 +52,7 @@ void showAll()
         printf("No records yet.\n");
         return;
     }
+
     for (int i = 0; i < total; i++)
     {
         showOne(i);
@@ -122,4 +130,36 @@ void sortByName()
         }
     }
     printf("Sorted by Name!\n");
+}
+
+
+int main()
+{
+    int choice;
+
+    while (1)
+    {
+        printf("\n====== Student Record System ======\n");
+        printf("1. Add Student\n");
+        printf("2. Show All\n");
+        printf("3. Search\n");
+        printf("4. Delete\n");
+        printf("5. Sort by SAP\n");
+        printf("6. Sort by Name\n");
+        printf("7. Exit\n");
+        printf("Enter choice: ");
+        scanf("%d", &choice);
+
+        switch (choice)
+        {
+        case 1: add(); break;
+        case 2: showAll(); break;
+        case 3: search(); break;
+        case 4: removeRecord(); break;
+        case 5: sortBySAP(); break;
+        case 6: sortByName(); break;
+        case 7: return 0;
+        default: printf("Invalid choice!\n");
+        }
+    }
 }
